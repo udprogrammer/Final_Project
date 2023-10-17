@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    #user_online {
+      width: 25px;
+      height: 25px;
+      border: 1px solid;
+      border-radius: 50%;
+    }
+  </style>
+  <body>
+    <div id="user_online"></div>
+    <p id="user_online_text"></p>
+  </body>
+  <script>
+    let user = window.navigator.onLine;
+    let user_color = document.getElementById("user_online");
+    let user_online_text = document.getElementById("user_online_text");
+    if (user == true) {
+      user_color.style.backgroundColor = "#4cbb17";
+      user_online_text.innerHTML = "Online";
+    } else {
+      user_color.style.backgroundColor = "red";
+      user_online_text.innerHTML = "Offline";
+    }
+  </script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 350px;
+        height: 350px;
+        margin: 10px;
+        display: inline-block;
+        text-align: center;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        background-color: #f9f9f9;
+        border-radius: 5px;
+      }
+
+      .box img {
+        width: 100%;
+        height: 70%;
+        object-fit: cover;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+
+      .box .user_id {
+        color: red;
+        margin: 5px 0;
+        font-weight: bold;
+      }
+
+      .box .user_name {
+        margin: 5px 0;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      async function logMovies() {
+        let movieData = await fetch("https://dummyjson.com/products");
+        let data = await movieData.json();
+
+        const container = document.getElementById("container");
+
+        data.products.forEach((item) => {
+          const box = document.createElement("div");
+          box.classList.add("box");
+
+          const img = document.createElement("img");
+          img.src = item.thumbnail;
+          img.classList.add("user_img");
+
+          const userId = document.createElement("p");
+          userId.classList.add("user_id");
+          userId.textContent = "ID: " + item.id;
+
+          const userName = document.createElement("p");
+          userName.classList.add("user_name");
+          userName.textContent =
+            item.title.charAt(0).toUpperCase() + item.title.slice(1);
+
+          const userprice = document.createElement("h3");
+          userprice.classList.add("user_price");
+          userprice.textContent = "Price : " + item.price + "$";
+
+          box.appendChild(img);
+          box.appendChild(userId);
+          box.appendChild(userName);
+          box.appendChild(userprice);
+
+          container.appendChild(box);
+        });
+      }
+
+      logMovies();
+    </script>
+  </body>
+</html>

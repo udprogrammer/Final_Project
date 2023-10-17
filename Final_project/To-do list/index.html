@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #user_text {
+      width: 50%;
+      padding: 10px;
+      margin: 20px 10px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      border: 1px solid black;
+      width: 20%;
+      margin: 10px 20px;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button.delete-button {
+      background-color: #f44336;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <input type="text" id="user_text" placeholder="Enter Your List" />
+    <button onclick="addIteam()">Add</button>
+    <ul id="user_list"></ul>
+  </body>
+  <script>
+    let arr = [];
+
+    let data = document.getElementById("user_text");
+    let ul = document.getElementById("user_list");
+
+    function addIteam() {
+      let dataText = data.value;
+      if (dataText.trim() != "") {
+        arr.push(dataText);
+        data.value = "";
+        displayTask();
+      } else {
+        alert("give me a content");
+      }
+    }
+
+    function displayTask() {
+      ul.innerHTML = "";
+      arr.map((item, index) => {
+        let li = document.createElement("li");
+        li.textContent = item;
+
+        let deletebutton = document.createElement("button");
+        deletebutton.textContent = "Delete";
+        deletebutton.className = "delete-button";
+        deletebutton.onclick = () => deleteItem(index);
+        li.appendChild(deletebutton);
+        ul.appendChild(li);
+      });
+    }
+
+    function deleteItem(index) {
+      arr.splice(index, 1);
+      displayTask();
+    }
+  </script>
+</html>

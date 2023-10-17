@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="name_id">Uday</h1>
+    <h1 id="name2">Khunt</h1>
+    <button onclick="changecolor()">click and change color</button>
+  </body>
+  <script>
+    function changecolor() {
+      let color =
+        "#" + (((1 << 24) * Math.random()) | 0).toString(16).padStart(6, "0");
+      let name = document.getElementById("name_id");
+      name.style.color = color;
+    }
+    function changecolor2() {
+      let color =
+        "#" + (((1 << 24) * Math.random()) | 0).toString(16).padStart(6, "0");
+      let name_color = document.getElementById("name2");
+      name_color.style.color = color;
+    }
+    setInterval(changecolor2, 1000);
+  </script>
+</html>

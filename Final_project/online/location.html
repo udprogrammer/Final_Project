@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h3>latitude:</h3>
+      <h1 id="user_location"></h1>
+    </div>
+    <div>
+      <h3>longitude</h3>
+      <h1 id="user_location2"></h1>
+    </div>
+    <button onclick="myLocation()">Get your Location</button>
+  </body>
+  <script>
+    function myLocation() {
+      let user_latitude = document.getElementById("user_location");
+      let user_longitude = document.getElementById("user_location2");
+      if (window.navigator) {
+        navigator.geolocation.getCurrentPosition(Showposition);
+      } else {
+        document.write("not");
+      }
+    }
+    function Showposition(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      user_location.innerHTML = latitude;
+      user_location2.innerHTML = longitude;
+    }
+  </script>
+</html>

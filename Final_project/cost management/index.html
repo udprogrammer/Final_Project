@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+
+    fieldset {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    legend {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    select#event_name {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  <body>
+    <fieldset>
+      <legend>Event</legend>
+      <select id="event_name">
+        <option value="">Select your Event</option>
+        <option value="Wedding">Wedding</option>
+        <option value="Anniversary">Anniversary</option>
+        <option value="Birthday">Birthday</option>
+        <option value="Festival">Festival</option>
+        <option value="Business Meetings">Business Meetings</option>
+      </select>
+      <input
+        type="number"
+        placeholder="Enter Members Number"
+        id="members_num"
+      />
+      <input type="number" placeholder="Enter Dish price" id="dish_price" />
+      <input type="number" placeholder="Discount" id="discount_price" />
+      <input type="number" placeholder="Advanced" id="advance" />
+      <button type="submit" onclick="totalCost()">Submit</button>
+    </fieldset>
+
+    <div>
+      <h3 id="user_totaldiscount"></h3>
+      <h3 id="user_totaladvance"></h3>
+      <h1 id="user_totalpay"></h1>
+    </div>
+  </body>
+  <script>
+    function totalCost() {
+      let num_member = document.getElementById("members_num").value;
+      let price = document.getElementById("dish_price").value;
+      let advanced = document.getElementById("advance").value;
+      let discount = document.getElementById("discount_price").value;
+
+      let Total_price = num_member * price;
+      let discount_cost = (Total_price * discount) / 100;
+      let total_pay = Total_price - discount_cost - advanced;
+
+      let pay = document.getElementById("user_totalpay");
+      let discount2 = document.getElementById("user_totaldiscount");
+      let advance2 = document.getElementById("user_totaladvance");
+
+      advance2.innerHTML = "Advanced Payble = " + "-" + advanced;
+      discount2.innerHTML = "Discount = " + "-" + discount_cost;
+      pay.innerHTML = "You should pay = " + total_pay;
+    }
+  </script>
+</html>
